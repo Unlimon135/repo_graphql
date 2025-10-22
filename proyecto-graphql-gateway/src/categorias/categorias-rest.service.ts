@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CategoriaType } from '../../types/categoria.type';
+import { CategoriaType } from '../types/categoria.type';
 
 @Injectable()
 export class CategoriasRestService {

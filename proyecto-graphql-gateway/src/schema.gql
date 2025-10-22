@@ -1,0 +1,55 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Medico {
+  id_medico: ID!
+  institucion: String!
+  numero_licencia: String!
+  ubicacion_consultorio: String!
+  usuario: Usuario
+}
+
+type Paciente {
+  cedula: String!
+  direccion: String!
+  fecha_nacimiento: DateTime!
+  id_paciente: ID!
+  nombre: String!
+  telefono: String!
+  usuario: Usuario
+}
+
+type Query {
+  receta(id: ID!): Receta!
+  recetas: [Receta!]!
+  recetasPorMedico(medicoId: ID!): [Receta!]!
+  recetasPorPaciente(pacienteId: ID!): [Receta!]!
+  usuario(id: ID!): Usuario!
+  usuarios: [Usuario!]!
+}
+
+type Receta {
+  diagnostico: String!
+  fecha_emision: DateTime!
+  id_receta: ID!
+  medico: Medico!
+  observaciones: String!
+  paciente: Paciente!
+  ubicacion_emision: String!
+}
+
+type Usuario {
+  apellido: String!
+  email: String!
+  estado: String!
+  fecha_registro: DateTime!
+  id_usuario: ID!
+  nombre: String!
+  tipo_usuario: String!
+}

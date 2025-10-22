@@ -9,6 +9,7 @@ export interface VentaType {
   cantidad: number;
   precio: number;
   fecha: string;
+  total;
 }
 
 @Injectable()
