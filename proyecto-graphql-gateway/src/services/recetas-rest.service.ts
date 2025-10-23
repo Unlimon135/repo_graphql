@@ -10,10 +10,10 @@ export class RecetasRestService {
     constructor(private readonly httpService: HttpService) {}
 
     findAll(): Observable<Receta[]> {
-        return this.httpService
-            .get(`${this.apiUrl}/recetas`)
-            .pipe(map((response) => response.data));
-    }
+  return this.httpService
+    .get(`${this.apiUrl}/recetas`)
+    .pipe(map((response) => response.data.data)); // 👈 nota el .data extra
+}
 
     findOne(id: number): Observable<Receta> {
         return this.httpService

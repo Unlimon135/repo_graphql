@@ -19,6 +19,7 @@ import { BusquedasModule } from './busquedas/busquedas.module';
  entities: [__dirname + '/**/*.entity{.ts,.js}'],
  synchronize: true, // Solo desarrollo
  logging: true, // Para debug
+ dropSchema: true, // Force recreate schema
  }),
  MedicosModule,
  PacientesModule,

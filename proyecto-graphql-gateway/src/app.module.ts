@@ -8,6 +8,7 @@ import { UsuariosResolver } from './resolvers/usuarios.resolver';
 import { RecetasResolver } from './resolvers/recetas.resolver';
 import { UsuariosRestService } from './services/usuarios-rest.service';
 import { RecetasRestService } from './services/recetas-rest.service';
+import { AnalyticsModule } from './analytics/analytics.module';
 @Module({
     imports: [
         GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -17,10 +18,11 @@ import { RecetasRestService } from './services/recetas-rest.service';
             playground: true,
         }),
         HttpModule.register({
-            baseURL: 'http://localhost:3000',
+            baseURL: 'http://localhost:300',
             timeout: 5000,
             maxRedirects: 5,
         }),
+        AnalyticsModule,
     ],
     providers: [
         // Resolvers

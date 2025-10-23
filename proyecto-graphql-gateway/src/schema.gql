@@ -25,11 +25,39 @@ type Paciente {
   usuario: Usuario
 }
 
+input PaginationInput {
+  """Número de página (1-based)"""
+  page: Int! = 1
+
+  """Tamaño de página"""
+  pageSize: Int! = 10
+}
+
+"""Estadísticas agregadas sobre recetas y prescripciones"""
+type PrescriptionAnalyticsResult {
+  periodEnd: String!
+  periodStart: String!
+  totalPrescribedItems: Int!
+  totalPrescriptions: Int!
+}
+
+"""Resultado combinado de producto y sucursal/farmacia"""
+type ProductPharmacyResult {
+  pharmacyAddress: String!
+  pharmacyName: String!
+  price: Int!
+  productId: Int!
+  productName: String!
+}
+
 type Query {
+  prescriptionAnalytics(from: String!, to: String!): PrescriptionAnalyticsResult!
   receta(id: ID!): Receta!
   recetas: [Receta!]!
   recetasPorMedico(medicoId: ID!): [Receta!]!
   recetasPorPaciente(pacienteId: ID!): [Receta!]!
+  searchProductsAndPharmacies(maxPrice: Float, minPrice: Float, pagination: PaginationInput, q: String, sortBy: String): [ProductPharmacyResult!]!
+  topDoctors(from: String!, pagination: PaginationInput, to: String!): TopDoctorsResult!
   usuario(id: ID!): Usuario!
   usuarios: [Usuario!]!
 }
@@ -42,6 +70,19 @@ type Receta {
   observaciones: String!
   paciente: Paciente!
   ubicacion_emision: String!
+}
+
+"""Ranking de médicos por número de recetas o prescripciones"""
+type TopDoctor {
+  doctorId: Int!
+  doctorName: String!
+  prescriptionsCount: Int!
+}
+
+"""Resultado para top médicos con paginación"""
+type TopDoctorsResult {
+  items: [TopDoctor!]!
+  total: Int!
 }
 
 type Usuario {
